@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    build: .
+    container_name: olist_dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      # To jest magia: Mapujemy Twój lokalny folder z danymi do środka
+      # Dzięki temu nie musisz przebudowywać obrazu jak zmienisz dane!
+      - ./data:/app/data
+      # Mapujemy też kod aplikacji, żebyś widział zmiany na żywo
+      - ./app.py:/app/app.py
+    restart: unless-stopped
